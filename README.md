@@ -20,3 +20,16 @@ user側　
 
 XAMMP/Laravel/MySQL
 
+## テストユーザー
+
+一般ユーザー<br>
+・メールアドレス：test@gmail.com<br>
+・パスワード：test
+
+管理ユーザー<br>
+・メールアドレス：admin@gmail.com<br>
+・パスワード：admin
+
+## データベース
+・データベース名：training<br>
+training.sqlをインポートして使用してください。
