@@ -37,7 +37,7 @@ if (isset($_POST["email"]) == true) {
     </div>
     <div class="edit">
     <div class="push">
-      <p class="push-text">a下記の項目を編集の上編集ボタンを押してください</p>
+      <p class="push-text">下記の項目を編集の上編集ボタンを押してください</p>
       <p><span>*</span>は必要項目となります。</p>
     </div>
 
