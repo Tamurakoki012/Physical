@@ -49,6 +49,7 @@ session_destroy();
     @can('admin-higher'){{-- 管理者に表示される --}}
       <div class="manager-main">
         <a href="manager_list" class="">管理者</a>
+        <a href="manager_list" class="">管理者</a>   <a href="manager_list" class="">管理者</a>
       </div>
       @endcan
   </div>
