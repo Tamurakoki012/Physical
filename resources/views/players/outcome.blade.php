@@ -12,27 +12,24 @@
 
 <body>
 
-  <script>
-  </script>
-
-  @include("players.header")
-
   <div class="day">
-    <div class="target-text2">
+    @include("players.header")
+    <div class="target-text">
       <h3>Results of the day</h3>
       <p>成果を登録しましょう</p>
       <p><span>*</span>必須項目</p>
     </div>
 
-    <form class="achievement-form" action="today_complete" method="post">
+    <form class="target-form" action="today_complete" method="post">
       {{ csrf_field() }}
 
-      <div class="mastar">
+      <div class="mastar_table">
         <div class="exercise_table">
           <!-- 必須 -->
           <div class="achievement">
-            <label for="achievement"><span>*</span>Menu:</label>
+            <label for="achievement"><span>*</span>Menu</label>
             <select name="today_exercise" id="today_exercise">
+              <option></option>
               <option value="腹筋">腹筋</option>
               <option value="腕立て">腕立て</option>
               <option value="背筋">背筋</option>
@@ -71,15 +68,13 @@
         </div>
 
         {{ csrf_field() }}
-        <div class="record-table2">
+        <div class="record-table">
           <!-- 必須 -->
           @if ($errors->has('today_record'))
           <p style="color:red;font-size: 10px;">{{$errors->first('today_record')}}</p>
           @endif
           <div class="achievement-record">
-            <label for="today_record"><span>*</span>Record</label><input class="" type="text" name="today_record" value="<?php if (!empty($_POST["today_record"])) {
-                                                                                                                            echo htmlspecialchars($_POST["today_record"]);
-                                                                                                                          } ?>"></input>
+            <input class="target_box" type="text" name="today_record" placeholder="record"></input>
             @if ($errors->has('unit'))
             <p style="color:red;font-size: 10px;">{{$errors->first('unit')}}</p>
             @endif
@@ -95,9 +90,7 @@
             @if ($errors->has('today_record2'))
             <p style="color:red;font-size: 10px;">{{$errors->first('today_record2')}}</p>
             @endif
-            <label for="today_record2">Record2</label><input class="" type="text" name="today_record2" value="<?php if (!empty($_POST["today_record2"])) {
-                                                                                                                echo htmlspecialchars($_POST["today_record2"]);
-                                                                                                              } ?>"></input>
+            <input class="target_box" type="text" name="today_record2" placeholder="record2"></input>
             @if ($errors->has('unit2'))
             <p style="color:red;font-size: 10px;">{{$errors->first('unit2')}}</p>
             @endif
@@ -113,9 +106,7 @@
             @if ($errors->has('today_record3'))
             <p style="color:red;font-size: 10px;">{{$errors->first('today_record3')}}</p>
             @endif
-            <label for="today_record3">Record3</label><input class="" type="text" name="today_record3" value="<?php if (!empty($_POST["today_record3"])) {
-                                                                                                                echo htmlspecialchars($_POST["today_record3"]);
-                                                                                                              } ?>"></input>
+            <input class="target_box" type="text" name="today_record3" placeholder="record3"></input>
             @if ($errors->has('unit3'))
             <p style="color:red;font-size: 10px;">{{$errors->first('unit3')}}</p>
             @endif

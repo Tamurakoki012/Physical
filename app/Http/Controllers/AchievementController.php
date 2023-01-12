@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Achievement;
 use App\Models\Training;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AchievementController extends Controller
 {
@@ -19,19 +21,19 @@ class AchievementController extends Controller
 
     $request->validate(
       [
-        'today_record' => ['required','nullable', 'regex:/^[0-9]+$/'],
+        'today_record' => ['required', 'nullable', 'regex:/^[0-9]+$/'],
 
-        'today_record2' => ['nullable', 'regex:/^[0-9]+$/','required_with:today_exercise2', 'nullable', 'string'],
+        'today_record2' => ['nullable', 'regex:/^[0-9]+$/', 'required_with:today_exercise2', 'nullable', 'string'],
         'today_exercise2' => ['required_with:today_record2', 'nullable', 'string'],
 
-        'today_record3' => ['nullable', 'regex:/^[0-9]+$/','required_with:today_exercise3', 'nullable', 'string'],
+        'today_record3' => ['nullable', 'regex:/^[0-9]+$/', 'required_with:today_exercise3', 'nullable', 'string'],
         'today_exercise3' => ['required_with:today_record3', 'nullable', 'string'],
 
-        'unit' => ['required','nullable'],
+        'unit' => ['required', 'nullable'],
 
-        'unit2' => ['required_with:today_record2', 'nullable','string'],
+        'unit2' => ['required_with:today_record2', 'nullable', 'string'],
 
-        'unit3' => ['required_with:today_record3', 'nullable','string'],
+        'unit3' => ['required_with:today_record3', 'nullable', 'string'],
       ],
       [
         'today_record.required' => '記録は必須入力です。',
@@ -47,9 +49,9 @@ class AchievementController extends Controller
 
         'unit' => '回数・時間・kmは必須入力です',
 
-        'unit2.required_with'=> 'unit2を入力して下さい',
+        'unit2.required_with' => 'unit2を入力して下さい',
 
-        'unit3.required_with'=> 'unit3を入力して下さい',
+        'unit3.required_with' => 'unit3を入力して下さい',
       ]
     );
 
@@ -70,9 +72,12 @@ class AchievementController extends Controller
 
   public function my_page()
   {
-      $user_id = Auth::id(); //ログインユーザーのID取得
-      $target = Training::with('user')->where('user_id', '=', $user_id)->simplePaginate(8);
-      $achievement = Achievement::with('user')->where('user_id', '=', $user_id)->simplePaginate(8);//ログインユーザーのIDに紐ついたdataのみ取得
-      return view('players.mypage', ['achievement' => $achievement,'target' => $target]); // views/players/mypage.blade.phpに取得データを渡す
+    
+    $user_id = Auth::id(); //ログインユーザーのID取得
+    $diff_day = Training::orderBy('target_num', 'desc')->value('created_at')->diffInDays(Carbon::now());
+
+    $target = Training::with('user')->where('user_id', '=', $user_id)->simplePaginate(8);
+    $achievement = Achievement::with('user')->where('user_id', '=', $user_id)->simplePaginate(8); //ログインユーザーのIDに紐ついたdataのみ取得
+    return view('players.mypage', ['achievement' => $achievement, 'target' => $target, 'diff_day' => $diff_day]); // views/players/mypage.blade.phpに取得データを渡す
   }
 }

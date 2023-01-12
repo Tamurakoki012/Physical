@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Training;
 use Illuminate\Support\Facades\Auth;
+
 class TrainingController extends Controller
 {
   public function exercise()
@@ -79,5 +80,5 @@ class TrainingController extends Controller
     ]);
     $request->session()->regenerateToken();
     return view('players.target_complete');
-  }
+  }  
 }

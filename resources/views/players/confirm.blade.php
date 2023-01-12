@@ -10,26 +10,20 @@ $_SESSION['password'] = $_POST["password"];
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <title></title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href="{{asset('/css/index.css')}}" rel="stylesheet">
-  <script src="{{asset('/js/cafe.js')}}"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="{{asset('/css/index.css')}}" rel="stylesheet">
+    <script src="{{asset('/js/cafe.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 
 <body>
-
-    <script>
-    </script>
-
     <div class="confirm">
-
         <div class="confirm-text">
             <p>ご確認ください</p>
         </div>
-
         <div class="push">
             <div class="push-text">
                 <p>下記の内容をご確認の上、登録ボタンを押してください<br></p>
@@ -69,3 +63,5 @@ $_SESSION['password'] = $_POST["password"];
         </div>
     </div>
 </body>
+
+</html>

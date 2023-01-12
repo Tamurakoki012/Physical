@@ -33,4 +33,5 @@ public function updatePassword(Request $request)
 
         return back()->with("status", "Passwordを変更しました");
 }
+
 }

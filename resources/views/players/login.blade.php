@@ -16,54 +16,38 @@ session_start();
 </head>
 
 <body>
-
-    <script>
-    </script>
-
-    <header>
-    </header>
-
-    <div class="top-img">
-        <img src="./img/jogging.jpg">
-    </div>
-
-    <div class="title">
-        <h1>Physical fitness</h1>
-    </div>
-
-    <form class="" action="login_cmplete" method="post">
-        @csrf
-
-        @if ($errors->has('messagge'))
-        <p style="color:red;position:absolute;bottom:530px;right:600px;">{{$errors->first('messagge')}}</p>
+    <div class="top">
+        @if (session('message'))
+        <div class="alert alert-danger">
+            {{ session('message') }}
+        </div>
         @endif
-        <div class="from">
+
+        <div class="title">
+            <h1>Physical fitness</h1>
+        </div>
+
+        <form class="login-form" action="login_cmplete" method="post" style="position:relative">
+            @csrf
+
+            @if ($errors->has('messagge'))
+            <p style="color:red; text-align:center;  background-color: #fff;">{{$errors->first('messagge')}}</p>
+            @endif
 
             @if ($errors->has('email'))
-            <p style="color:red;position: absolute;bottom:450px;">{{$errors->first('email')}}</p>
+            <p style="color:red; text-align: center;   background-color: #fff;">{{$errors->first('email')}}</p>
             @endif
             <div class="mail">
-                <label>Email</label>
-                <input class="email" type="text" name="email" value="<?php if (!empty($_POST["email"])) {
-                                                                            echo htmlspecialchars($_POST["email"]);
-                                                                        } ?>"><br></input>
+                <input class="email" type="text" name="email" placeholder="Email"><br></input>
             </div>
             @if ($errors->has('password'))
-            <p style="color:red;;position:absolute;bottom:370px;">{{$errors->first('password')}}</p>
+            <p style="color:red; text-align: center;   background-color: #fff;">{{$errors->first('password')}}</p>
             @endif
             <div class="pas">
-                <label for="password">Password</label>
-                <input type="password" name="password">
+                <input class="email" type="password" name="password" placeholder="Password">
             </div>
-
-            <div class="">
-                <input class="button" type="submit" name="login_cmplete" value="ログイン">
-            </div>
-
-            <div class="button1">
-                <a href="new" class="">新規登録</a>
-            </div>
-        
-        </div>
-    </form>
+            <input class="button" type="submit" name="login_cmplete" value="Login">
+            <a class="button1" href="new" class="">Signup</a>
+        </form>
+    </div>
 </body>

@@ -22,9 +22,11 @@ session_destroy();
 <body>
   @include("players.header")
 
-<div class="top-img">
-  <img src="./img/5278.jpg">
-</div>
+@if (session('successMessage'))
+  <div class="alert alert-success text-center">
+    {{ session('successMessage') }}
+  </div> 
+@endif
 
 <div class="complete-text">
   <p>目標登録完了</p>

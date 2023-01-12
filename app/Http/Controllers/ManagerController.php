@@ -3,22 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Player;
 use App\Models\Manager;
 
 class ManagerController extends Controller
 {
 
-    public function manager_signin()
-    {
-        return view('players.manager');
-    }
-
-    public function manager_login(Request $request)
-    {
-        $users = Manager::all();
-        return view('players.manager_list', compact('users'));
+    public function manager_login()
+    {//usersの登録内容をすべて取得、10ページで回す
+        $users = Manager::paginate(10);
+        return view('players.manager_list', ['users' => $users ]);
     }
 
     public function edit(Request $request)
@@ -65,4 +59,5 @@ class ManagerController extends Controller
 
         return view('players.delete');
     }
+
 }

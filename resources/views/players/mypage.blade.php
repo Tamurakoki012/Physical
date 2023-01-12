@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
+
 function db_connect()
 {
   try {
@@ -49,7 +51,7 @@ $sum = trim($sum, ",");
     new Chart(context, {
       type: 'bar',
       data: {
-        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31',],
+        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', ],
         datasets: [{
             label: "記録1",
             data: [<?php echo $sum ?>],
@@ -90,40 +92,38 @@ $sum = trim($sum, ",");
 
   <div class="my_page">
     <h2>Mypage</h2>
-  </div>
-  
-  <div class="container">
-    <a href="#" class="btn-box">User</a>
-    <div class="user">
-      <h3>Name:{{ Auth::user()->name }}</h3>
-      <p>Email:{{ Auth::user()->email }}</p>
-      <a href="password" class="close">Pssword reset</a><br>
-      <a href="#" class="close">Close</a>
+
+    <div class="container">
+      <a href="#" class="btn-box">User</a>
+      <div class="user">
+        <h3>Name:{{ Auth::user()->name }}</h3>
+        <p>Email:{{ Auth::user()->email }}</p>
+        <a href="password" class="close">Pssword reset</a><br>
+        <a href="#" class="close">Close</a>
+      </div>
     </div>
-  </div>
 
-  <div class="button9">
-    <a href="index" class="">トップへ戻る</a>
-  </div>
+    <div class="button9">
+      <a href="index" class="">トップへ戻る</a>
+    </div>
 
-  <div class="bar">
-    <canvas id="sums"></canvas>
-  </div>
-
-  <div class="my_page">
-    <div class="today2">
-      <div class="today-text2">
-        <h4>目標</h4>
+    <div class="my_page_inner">
+      <div class="bar">
+        <canvas id="sums"></canvas>
       </div>
 
       <div class="target-table">
-        <div class="todays2">
-          <a href="#"></a>
-        </div>
-        <div class="user-data2">
-          <a href="#" class="close2">Close</a>
-          <table>
-            <tbody>
+        <div class="user-target">
+          <div class="user_targettext">
+            <h4>目標</h4>
+
+            <div class="todays2">
+              <a href="#"></a>
+            </div>
+          </div>
+          <div class="user-targetdata">
+            <a href="#" class="close2">Close</a>
+            <table>
               @foreach ($target as $get)
               <tr>
                 <td>
@@ -132,6 +132,8 @@ $sum = trim($sum, ",");
               </tr>
               <tr>
                 <td>
+                  <p><span>登録日</span>:{{$get->created_at}}</p>
+                  <p><span>経過日数</span>:{{$diff_day}}日目</p>
                   <p><span>目標日数</span>:{{$get->target_num}}日間</p>
                 </td>
               </tr>
@@ -152,59 +154,54 @@ $sum = trim($sum, ",");
               </tr>
               <tr>
                 <td>
-                <h3><span>Menu3</span>:{{$get->exercise_name3}}{{$get->exercise_record3}}{{$get->unit3}}</h3>
+                  <p><span>Menu3</span>:{{$get->exercise_name3}}{{$get->exercise_record3}}{{$get->unit3}}</p>
                 </td>
               </tr>
               @endforeach
-            </tbody>
-          </table>
+            </table>
+          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="today">
-      <div class="today-text">
-        <h4>本日の成果</h4>
-      </div>
-
-      <div class="todays-table">
-        <div class="todays">
-          <a href="#"></a>
-        </div>
-
-        <div class="user-data">
-          <table>
-            <tbody>
-              @foreach ($achievement as $stock)
-              <tr>
-                <td>
-                  <p>{{$stock->deadline}}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p><span>登録日</span>:{{$stock->created_at}}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p><span>Menu1</span>:{{$stock->today_exercise}}{{$stock->today_record}}{{$stock->unit}}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p><span>Menu2</span>:{{$stock->today_exercise2}}{{$stock->today_record2}}{{$stock->unit2}}</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h3><span>Menu3</span>:{{$stock->today_exercise3}}{{$stock->today_record3}}{{$stock->unit3}}</h3>
-                </td>
-              </tr>
-              @endforeach
-              <a href="#" class="close3">Close</a>
-            </tbody>
-          </table>
+        <div class="todays-table">
+          <div class="user-target">
+            <div class="today-text">
+              <h4>本日の成果</h4>
+              <div class="todays">
+                <a href="#"></a>
+              </div>
+            </div>
+            <div class="user-data">
+              <table>
+                @foreach ($achievement as $stock)
+                <tr>
+                  <td>
+                    <p>{{$stock->deadline}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p><span>登録日</span>:{{$stock->created_at}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p><span>Menu1</span>:{{$stock->today_exercise}}{{$stock->today_record}}{{$stock->unit}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p><span>Menu2</span>:{{$stock->today_exercise2}}{{$stock->today_record2}}{{$stock->unit2}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p><span>Menu3</span>:{{$stock->today_exercise3}}{{$stock->today_record3}}{{$stock->unit3}}</p>
+                  </td>
+                </tr>
+                @endforeach
+                <a href="#" class="close3">Close</a>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -240,23 +237,24 @@ $sum = trim($sum, ",");
   });
 
   $(".todays2").on("click", function() {
-    $(".user-data2").addClass("active");
+    $(".user-targetdata").addClass("active");
   });
   $(".todays2").on("click", function() {
     $(".todays2").addClass("active2");
   });
   $(".todays2").on("click", function() {
-    $(".today-text2").addClass("active2");
+    $(".user_targettext").addClass("active2");
   });
 
   $(".close2").on("click", function() {
-    $(".user-data2").removeClass("active");
+    $(".user-targetdata").removeClass("active");
   });
   $(".close2").on("click", function() {
     $(".todays2").removeClass("active2");
   });
   $(".close2").on("click", function() {
-    $(".today-text2").removeClass("active2");
+    $(".user_targettext").removeClass("active2");
   });
 </script>
+
 </html>

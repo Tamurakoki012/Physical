@@ -33,7 +33,7 @@ class PlayersController extends Controller
 
     public function confirm(Request $request)
     {
-
+        $user = new Player;
         $request->validate(
             [
                 'name' => ['required', 'max:10'],
@@ -48,10 +48,8 @@ class PlayersController extends Controller
                 'password.required' => 'パスワードは必須入力です。'
             ]
         );
-        $name = $request->name;
-        $email = $request->email;
-        $password = $request->password;
-        return view('players.confirm', compact('name', 'email', 'password'));
+        $user -> fill($request->all());//値一括セット
+        return view('players.confirm', compact('user'));
     }
 
     public function complete(Request $request)
@@ -63,6 +61,7 @@ class PlayersController extends Controller
             "password" => Hash::make($request->input("password")),
             'created_at ' => $request->created_at
         ]);
+        
         $request->session()->regenerateToken();
         return view('players.complete');
     }
@@ -74,6 +73,8 @@ class PlayersController extends Controller
 
     public function login(Request $request)
     {
+        $user = Auth::user();
+        $id = Auth::id();
         $user_info = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -81,7 +82,7 @@ class PlayersController extends Controller
 
         if (Auth::attempt($user_info)) {
             $request->session()->regenerate();
-            return view('players.index');
+            return view('players.index',compact('user', 'id'));
         }
         return back()->withErrors([
             'messagge' => 'メールアドレス、もしくは、パスワードが違います。',
@@ -91,18 +92,62 @@ class PlayersController extends Controller
     public function doLogout()
     {
         Auth::logout();
-        return redirect('login');
+        return redirect('login')->with('message', 'ログアウトしました');
     }
 
-    public function index()
-    {
-        $user = Auth::user();
-        $id = Auth::id();
-        return view('players.index', compact('user', 'id'));
-    }
-
-    public function sample()
-    {
-        return view('players.sample');
-    }
+    public function serch(Request $request) {
+        $keyword_name = $request->name;
+        $keyword_email = $request->email;
+  
+        if(!empty($keyword_name) && empty($keyword_email)) {
+        $query = Player::query();
+        $users = $query->where('name','like', '%' .$keyword_name. '%')->get();
+        $message = "「". $keyword_name."」を含む名前の検索が完了しました。";
+        return view('players.serch')->with([
+          'users' => $users,
+          'message' => $message,
+        ]);
+      }
+  
+      if(empty($keyword_name) && !empty($keyword_email)) {
+        $query = Player::query();
+        $users = $query->where('email','like', '%' .$keyword_email. '%')->get();
+        $message = "「". $keyword_email."」を含む名前の検索が完了しました。";
+        return view('players.serch')->with([
+          'users' => $users,
+          'message' => $message,
+        ]);
+      }
+      elseif(empty($keyword_name) && !empty($keyword_email)){
+        $query = Player::query();
+        $users = $query->where('email','<=', $keyword_email)->get();
+        $message = $keyword_email. "歳以下の検索が完了しました";
+        return view('players.serch')->with([
+          'users' => $users,
+          'message' => $message,
+        ]);
+      }
+      elseif(!empty($keyword_name) && !empty($keyword_email)){
+        $query = Player::query();
+        $users = $query->where('name','like', '%' .$keyword_name. '%')->where('email','>=', $keyword_email)->get();
+        $message = "「".$keyword_name . "」を含む名前と". $keyword_email. "歳以上の検索が完了しました";
+        return view('players.serch')->with([
+          'users' => $users,
+          'message' => $message,
+        ]);
+      }
+      elseif(!empty($keyword_name) && !empty($keyword_email)){
+        $query = Player::query();
+        $users = $query->where('name','like', '%' .$keyword_name. '%')->where('email','<=', $keyword_email)->get();
+        $message = "「".$keyword_name . "」を含む名前と". $keyword_email. "歳以下の検索が完了しました";
+        return view('players.serch')->with([
+          'users' => $users,
+          'message' => $message,
+        ]);
+      }
+      else {
+        $message = "検索結果はありません。";
+        return view('players.serch')->with('message',$message);
+        }
+  }
 }
