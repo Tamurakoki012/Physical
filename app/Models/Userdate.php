@@ -5,30 +5,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Training extends Model
+class Userdate extends Model
 {
     use HasFactory;
-    protected $table = 'target';
+    protected $table = 'user_date';
     const UPDATED_AT = NULL;
     protected $fillable = [
-      'user_id',
-      'exercise_name', 
-      'exercise_name2',
-      'exercise_name3',
-      'exercise_record', 
-      'exercise_record2',
-      'exercise_record3',
-      'unit',
-      'unit2',
-      'unit3',
-      'target_num',
-      'target_start',
-      'target_end',
-      'target_weight', 
-      'created_at',
-      'update_at'   
+      'user_id','user_name', 'user_tell', 'post', 'prefectures', 'municipality','address','building'
     ];
-
     public function user() {
       return $this->belongsTo(User::class);
     }
@@ -38,8 +22,8 @@ class Training extends Model
         parent::boot();
 
         // 保存時user_idをログインユーザーに設定
-        self::saving(function($target) {
-          $target->user_id = Auth::id();
+        self::saving(function($user_date) {
+          $user_date->user_id = Auth::id();
         });
       }
 }

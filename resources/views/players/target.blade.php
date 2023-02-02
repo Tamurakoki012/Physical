@@ -16,6 +16,7 @@
   
   <div class="target">
    @include("players.header")
+   
     <div class="target-text">
       <h3>Goal setting</h3>
       <p>目標を設定しましょう</p>
@@ -24,6 +25,18 @@
 
     <form class="target-form" action="target_complete" method="post">
       {{ csrf_field() }}
+      <div class="target_num">
+        <!-- 必須 -->
+        @if ($errors->has('target_start'))
+        <p style="color:red;font-size: 10px; text-align: center;">{{$errors->first('target_start')}}</p>
+        @endif
+        <span>*</span><input class="target_box" type="text" name="target_start" placeholder="開始日"></input>
+        @if ($errors->has('target_end'))
+        <p style="color:red;font-size: 10px; text-align: center;">{{$errors->first('target_end')}}</p>
+        @endif
+        ~<input class="target_box" type="text" name="target_end" placeholder="終了日"></input>
+      </div>
+
       <div class="target_num">
         <!-- 必須 -->
         @if ($errors->has('target_num'))

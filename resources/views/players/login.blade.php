@@ -48,6 +48,7 @@ session_start();
             </div>
             <input class="button" type="submit" name="login_cmplete" value="Login">
             <a class="button1" href="new" class="">Signup</a>
+            
         </form>
     </div>
 </body>

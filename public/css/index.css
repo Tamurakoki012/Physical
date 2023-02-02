@@ -82,6 +82,7 @@ body {
 }
 
 /*header-top*/
+
 body {
     font-family: "American Typewriter", YuGothic, "Yu Gothic", arial;
 }
@@ -137,8 +138,12 @@ header {
     margin-left: 5%;
 }
 
+.logo:hover{
+    opacity: 0.5;
+}
+
 .logo img {
-    width: 50%;
+    width: 40%;
     height: 20%;
     filter: brightness(110%);
 }
@@ -486,9 +491,9 @@ header {
 
 .welcome {
     animation-name: fadein-welcome;
-    animation-duration: 2s;
+    animation-duration: 3s;
     animation-timing-function: ease;
-    animation-delay: 0s;
+    animation-delay: 1s;
     animation-iteration-count: 1;
     animation-direction: normal;
     animation-fill-mode: backwards;
@@ -508,7 +513,7 @@ header {
     font-size: 20px;
 }
 /*target*/
-.target-form{
+.target-form {
     animation-name: fadein-target-form;
     animation-duration: 3s;
     animation-timing-function: ease;
@@ -530,9 +535,8 @@ header {
     }
 }
 
-
-.target{
-    background-image: url('../img/6272.jpg');
+.target {
+    background-image: url("../img/6272.jpg");
     height: 800px;
     background-size: cover;
     animation-name: fadein-target-form;
@@ -551,7 +555,7 @@ header {
     font-family: "American Typewriter", arial;
 }
 
-.target-text{
+.target-text {
     animation-name: fadein-target;
     animation-duration: 3.5s;
     animation-timing-function: ease;
@@ -623,8 +627,8 @@ span {
 }
 
 /*achievement*/
-.day{
-    background-image: url('../img/6272.jpg');
+.day {
+    background-image: url("../img/6272.jpg");
     height: 800px;
     background-size: cover;
     animation-name: fadein-day-form;
@@ -669,10 +673,112 @@ span {
 }
 
 /*my_page*/
+#header-mypage {
+    background-color: white;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#header-mypage span {
+    background-color: black;
+    width: 35px;
+    height: 3px;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 9px;
+    transition: all 0.7s;
+    margin-left: 20px;
+}
+
+.header-mypage-nav {
+    width: 300px;
+    height: 100%;
+    background: white;
+    position: absolute;
+    padding-top: 40px;
+    transform: translate(-300px);
+    transition: 0.3s ease-out;
+}
+
+.header-mypage-nav a {
+    color: #000;
+    padding: 20px;
+}
+
+.header-mypage-nav.open {
+    transform: translate(0);
+    transition: 0.3s ease-out;
+}
+
+.header-mypage-nav li {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eeeeee;
+    width: 80%;
+}
+
+.header-mypage-nav a:hover {
+    color: #c30;
+}
+
+.hamburger {
+    padding-top: 8px;
+    padding-left: 10px;
+}
+
+.hamburger:hover {
+    cursor: pointer;
+}
+
+.hamburger.active span:nth-of-type(1) {
+    transform: translateY(11px) rotate(-50deg);
+    transition: 0.3s ease-out;
+}
+.hamburger.active span:nth-of-type(3) {
+    transform: translateY(-13px) rotate(50deg);
+    transition: 0.3s ease-out;
+}
+.hamburger.active span:nth-of-type(2) {
+    opacity: 0;
+}
+
+.header_img img {
+    width: 50px;
+    height: 40px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.close_nav {
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.close_nav:hover {
+    color: #c30;
+}
+
+.my_page {
+    background-image: url("../img/aaa.jpg");
+    background-size: cover;
+    height: 800px;
+}
+
 .my_page h2 {
     text-align: center;
     font-family: "American Typewriter", arial;
     font-size: 40px;
+}
+
+.mypagetitle{
+    animation-name: fadein-welcome;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 1.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: backwards;
 }
 
 .container {
@@ -683,8 +789,20 @@ span {
 
 .bar {
     width: calc(50% - 40px);
-    height: 430px;
+    height: 450px;
+    margin-left: 10px;
+    margin-bottom: 10px;
     overflow: hidden;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 1px 4px 10px 0 rgb(0 50 0 / 70%);
+    animation-name: fadein-day-form;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: backwards;
 }
 
 .mb-3 {
@@ -726,26 +844,76 @@ span {
     right: 0;
 }
 
-.my_page_inner{
+.my_page_inner {
     display: flex;
 }
 
-.target-table{
-   display: flex;
-   width: 50%;
-   margin: 0 auto;
-   text-align: center;
-   justify-content: space-between;
+.target-table {
+    display: flex;
+    width: 48%;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: space-between;
 }
 
-.target-table td{
+.target-table td {
     border: none;
 }
 
-.user_targettext{
+.user-target-o {
+    background-image: url("../img/b.jpg");
+    background-size: cover;
+    height: 250px;
+    border-radius: 20px;
+    box-shadow: 1px 4px 10px 0 rgb(0 50 0 / 70%);
+    width: 85%;
+    margin-right: 50px;
+    animation-name: fadein-day-form;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 1.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: backwards;
+}
+
+.user-target-t {
+    background-image: url("../img/bb.jpg");
+    background-size: cover;
+    height: 250px;
+    border-radius: 20px;
+    box-shadow: 1px 4px 10px 0 rgb(0 50 0 / 70%);
+    width: 85%;
+    margin-right: 50px;
+    animation-name: fadein-day-form;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 1s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: backwards;
+}
+
+@keyframes fadein-mypage-achievement-form {
+    0% {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+.user_targettext {
     display: flex;
     margin-left: 40%;
 }
+
+.user_targettext h4 {
+    font-weight: 600;
+}
+
 .user_targettext.active2 {
     display: none;
 }
@@ -753,9 +921,10 @@ span {
     overflow: auto;
     visibility: hidden;
     border-radius: 7px 7px 7px 7px;
+    background-color: white;
     border: solid 1px;
-    height: 180px;
-    width: 300px;
+    width: 350px;
+    height: 252px;
 }
 .user-targetdata span {
     font-weight: bold;
@@ -773,25 +942,51 @@ span {
     animation-fill-mode: backwards;
 }
 
-.user-targetdata p{
-    padding-left: 50px;
+.user-targetdata p {
+    padding-right: 25px;
+    padding-left: 25px;
 }
 
-.today-text{
+.user-targetdata table{
+    margin: 0 auto;
+}
+
+.user_target_list{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.user_target_list_menu3{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.today-text {
     display: flex;
-    margin-left: 40%;
+    margin-left: 35%;
+}
+
+.today-text h4 {
+    font-weight: 600;
 }
 
 .user-data {
     overflow: auto;
     visibility: hidden;
     border-radius: 7px 7px 7px 7px;
+    background-color: white;
     border: solid 1px;
-    width: 300px;
-    height: 160px;
+    width: 350px;
+    height: 252px;
 }
-.user-data p{
-    padding-left: 50px;
+.user-data p {
+    padding-right: 25px;
+    padding-left: 25px;
+}
+.user-data table{
+    margin: 0 auto;
 }
 .user-data.active {
     visibility: visible;
@@ -810,6 +1005,7 @@ span {
 }
 
 .todays a {
+    margin-left: 10px;
     display: block;
     position: absolute;
     width: 20px;
@@ -860,6 +1056,7 @@ span {
     display: none;
 }
 .todays2 a {
+    margin-left: 10px;
     display: block;
     position: absolute;
     width: 20px;
@@ -911,6 +1108,13 @@ span {
     position: relative;
     border: 1px solid #000000;
     transition: 0.4s;
+    animation-name: fadein-welcome;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: backwards;
 }
 
 .btn-box:hover {
@@ -981,6 +1185,66 @@ span {
 
 .close3:hover {
     color: #bb0000;
+}
+
+.twitter {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 95%;
+}
+
+.twitter img {
+    border-radius: 20px;
+    width: 50px;
+    padding-left: 5px;
+    box-shadow: 1px 4px 10px 0 rgb(0 50 0 / 70%);
+    margin-left: 30px;
+    margin-top: -100%;
+    background-color: white;
+    animation-name: fadein-welcome;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: backwards;
+}
+
+.twitter :hover {
+    opacity: 0.95;
+}
+
+.my_page_back {
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid black;
+    border-top: none;
+    border-right: none;
+    font-weight: 600;
+    padding: 0px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: black;
+    text-decoration: none !important;
+    margin-top: -50px;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    animation-name: fadein-welcome;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: backwards;
+}
+
+.my_page_back a {
+    color: #000;
+    font-size: 15px;
+}
+
+.my_page_back:hover {
+    letter-spacing: 3px;
 }
 
 /*user_list*/
@@ -1081,10 +1345,7 @@ span {
 .update2 {
     margin: auto;
     margin-top: 10%;
-    border-top: solid 1px #dddddd;
-    border-bottom: solid 1px #dddddd;
-    border-right: solid 1px #dddddd;
-    border-left: solid 1px #dddddd;
+    border: solid 1px #dddddd;
     padding: 30px;
     width: 30%;
 }
@@ -1100,10 +1361,7 @@ span {
 .delete {
     margin: auto;
     margin-top: 10%;
-    border-top: solid 1px #dddddd;
-    border-bottom: solid 1px #dddddd;
-    border-right: solid 1px #dddddd;
-    border-left: solid 1px #dddddd;
+    border: solid 1px #dddddd;
     padding: 20px;
     width: 30%;
 }
@@ -1125,11 +1383,29 @@ span {
 }
 
 /*chat*/
+.chat_body{
+    background-image: url('../img/cc.jpg');
+    background-size: cover;
+    height: 800px;
+}
+
 .main_form {
     margin: 0 auto;
     margin-top: 10%;
-    width: 50%;
+    width: 70%;
     margin-top: 0;
+    animation-name: fadein-welcome;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 1.5s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: backwards;
+}
+
+.sub_form {
+    display: flex;
+    width: 100%;
 }
 
 .community {
@@ -1141,54 +1417,68 @@ span {
     margin-bottom: 5%;
 }
 
-.sub_form {
-    display: flex;
-}
-
 .message p {
     font-weight: bold;
+}
+
+.message {
+    width: 50%;
+}
+
+.chat_user{
+    width: 50%;
 }
 
 .chat_user p {
     font-weight: bold;
 }
 
-ul {
-    border-top: solid 1px #dddddd;
-    border-bottom: solid 1px #dddddd;
-    border-right: solid 1px #dddddd;
-    border-left: solid 1px #dddddd;
+#jsi-name {
     border-radius: 7px 7px 7px 7px;
-    width: 90%;
+    width: 100%;
+    padding: 10px;
+}
+
+#jsi-msg {
+    border-radius: 7px 7px 7px 7px;
+    width: 100%;
+    padding: 10px;
+}
+
+#jsi-board{
+    background-color: white;
+    opacity: 0.8;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
 }
 
 #jsi-board li {
     padding: 2px;
 }
 
-#jsi-name {
-    border-radius: 7px 7px 7px 7px;
-}
-
-#jsi-msg {
-    border-radius: 7px 7px 7px 7px;
-}
-
 #jsi-button {
     background: transparent;
-    height: auto;
-    margin-top: 3.5%;
+    height: 32px;
     background-color: white;
-    border-radius: 7px 7px 7px 7px;
+    border-radius: 10px;
+    margin-top: 27px;
+    transition: all 0.3s;
+    text-decoration: none !important;
+    box-shadow: 0px 3px 0px 0 black;
+}
+
+#jsi-button:hover {
+    color: white;
+    background-color: #000;
+    box-shadow: 0px 0px 0px 0 black;
 }
 
 #jsi-button p {
     text-align: center;
-}
-
-#jsi-button :hover {
-    opacity: 0.5;
-    color: black;
+    width: 50px;
+    font-weight: 300;
 }
 
 /*button*/
@@ -1317,26 +1607,6 @@ ul {
 }
 
 .button8:hover {
-    padding-left: 0.7em;
-    padding-right: 0.3em;
-}
-
-.button9 {
-    margin-left: 3%;
-    display: inline-block;
-    padding: 0.25em 0.5em;
-    text-decoration: none;
-    border-top: none;
-    border-right: none;
-    background: transparent;
-    border-bottom: solid 1px black;
-    border-left: solid 1px black;
-    color: black;
-    transition: 0.4s;
-    font-size: 12px;
-}
-
-.button9:hover {
     padding-left: 0.7em;
     padding-right: 0.3em;
 }
@@ -2035,7 +2305,6 @@ ul {
     .main-nav {
         margin-left: 15%;
     }
-
 }
 
 /*スマホ*/
@@ -2331,8 +2600,5 @@ ul {
         font-family: "American Typewriter", YuGothic, "Yu Gothic", arial;
         width: 35%;
         margin: 0 auto;
-    }
-
-        padding: 10px;
     }
 }

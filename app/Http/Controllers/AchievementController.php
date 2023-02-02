@@ -72,12 +72,15 @@ class AchievementController extends Controller
 
   public function my_page()
   {
-    
     $user_id = Auth::id(); //ログインユーザーのID取得
+    $selectdate = strtotime(date('Y-m-d H:i'));
+    $target_start = Training::where('target_strat');
+    $target_end = Training::where('target_end');
     $diff_day = Training::orderBy('target_num', 'desc')->value('created_at')->diffInDays(Carbon::now());
-
+    $target = Training::latest()->get();
     $target = Training::with('user')->where('user_id', '=', $user_id)->simplePaginate(8);
+    $achievement = Achievement::latest()->get();
     $achievement = Achievement::with('user')->where('user_id', '=', $user_id)->simplePaginate(8); //ログインユーザーのIDに紐ついたdataのみ取得
-    return view('players.mypage', ['achievement' => $achievement, 'target' => $target, 'diff_day' => $diff_day]); // views/players/mypage.blade.phpに取得データを渡す
+    return view('players.mypage', ['achievement' => $achievement, 'target' => $target, 'diff_day' => $diff_day, 'target_start'=>$target_start, 'target_end'=>$target_end, 'selectdate'=>$selectdate]); // views/players/mypage.blade.phpに取得データを渡す
   }
 }

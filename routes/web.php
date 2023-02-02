@@ -29,8 +29,8 @@ Route::get('/login', [PlayersController::class, 'signin']);
 Route::get('/manager', [ManagerController::class, 'manager_signin']);
 Route::get('/delete', [PlayersController::class, 'delete']);
 Route::post('/delete', [PlayersController::class, 'delete']);
-Route::get('/edit', [PlayersController::class, 'edit']);
-Route::post('/edit', [PlayersController::class, 'edit']);
+Route::get('/edit', [ManagerController::class, 'edit']);
+Route::post('/edit', [ManagerController::class, 'edit']);
 Route::post('/update1', [PlayersController::class, 'update1']);
 Route::post('/update2', [PlayersController::class, 'update2']);
 Route::get('/login_cmplete', [PlayersController::class, 'login']);
@@ -49,15 +49,19 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
   Route::get('/password', [HomeController::class, 'changePassword'])->name('password');
   Route::post('/password', [HomeController::class, 'updatePassword'])->name('update-password');
   Route::get('/target', [TrainingController::class, 'exercise']);
-  Route::post('/target', [TrainingController::class, 'exercise', 'updatetraining']);
+  Route::post('/target', [TrainingController::class, 'exercise']);
   Route::get('/target_complete', [TrainingController::class, 'target_complete'])->name('target_complete');
-  Route::post('/target_complete', [TrainingController::class, 'target_complete'])->name('target_complete');
+  Route::post('/target_complete', [TrainingController::class, 'target_complete','traget_all_complete'])->name('target_complete');
   Route::get('/outcome', [AchievementController::class, 'achievement']);
   Route::post('/outcome', [AchievementController::class, 'achievement']);
   Route::get('/today_complete', [AchievementController::class, 'today_complete']);
-  Route::post('/today_complete', [AchievementController::class, 'today_complete', 'update_achievement']);
+  Route::post('/today_complete', [AchievementController::class, 'today_complete', 'update_achievement',]);
   Route::get('/mypage', [AchievementController::class, 'my_page']);
   Route::post('/mypage', [AchievementController::class, 'my_page']);
+  Route::get('/mydate', [PlayersController::class, 'userdate']);
+  Route::post('/mydate_store', [PlayersController::class, 'userdate_store']);
+  Route::get('/profile', [PlayersController::class, 'mydate_profile']);
+  Route::post('/profile', [PlayersController::class, 'mydate_profile']);
   Route::get('/cha', function () {
     return view('players.cha');
   });
@@ -71,6 +75,10 @@ Route::group(['middleware' => ['auth', 'can:user-higher']], function () {
 
 Route::get('/aaa', function () {
   return view('players.aaa');
+});
+
+Route::get('/aaaa', function () {
+  return view('players.aaaa');
 });
 
 Route::get('/serch',[PlayersController::class, 'serch']);

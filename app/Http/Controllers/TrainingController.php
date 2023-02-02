@@ -23,6 +23,8 @@ class TrainingController extends Controller
     $request->validate(
       [
         'target_num' => ['required', 'nullable', 'regex:/^[0-9]+$/'],
+        'target_start' => ['required'],
+        'target_end' => ['required'],
         'exercise_record' => ['required', 'nullable', 'regex:/^[0-9]+$/'],
 
         'exercise_record2' => ['nullable', 'regex:/^[0-9]+$/', 'required_with:exercise_name2', 'nullable', 'string'],
@@ -42,6 +44,12 @@ class TrainingController extends Controller
       [
         'target_num.required' => '目標日数は必須入力です',
         'target_num.regex' => '目標日数は整数で入力して下さい',
+
+        'target_start'=>'開始期間は必須入力です',
+        'target_start'=>'開始期間は整数で入力してください',
+
+        'target_end'=>'終了期間は必須入力です',
+        'target_end'=>'終了期間は整数で入力してください',
 
         'exercise_record.required' => '記録は必須入力です',
         'exercise_record.regex' => '記録は整数で入力して下さい',
@@ -76,6 +84,8 @@ class TrainingController extends Controller
       'unit2' => $request->unit2,
       'unit3' => $request->unit3,
       'target_num' => $request->target_num,
+      'target_start' => $request->target_start,
+      'target_end' => $request->target_end,
       'target_weight' => $request->target_weight,
     ]);
     $request->session()->regenerateToken();
