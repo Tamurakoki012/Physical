@@ -22,7 +22,7 @@
         };
     </script>
 </head>
-
+aaaa
 <body class="chat_body">
     @include("players.header")
     <div class="main_form">
