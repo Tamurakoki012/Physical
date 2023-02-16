@@ -42,7 +42,7 @@ session_destroy();
   <div class="button3">
     <a href="login" class="">トップへ戻る</a>
   </div>
-
+zzzzz
   </div>
 </body>
 
