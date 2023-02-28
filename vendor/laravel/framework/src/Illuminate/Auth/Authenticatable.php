@@ -85,4 +85,8 @@ trait Authenticatable
     {
         return $this->rememberTokenName;
     }
+    public function getRememberTokenNamea()
+    {
+        return $this->rememberTokenName;
+    }
 }
